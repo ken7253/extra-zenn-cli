@@ -1,10 +1,8 @@
 {
-	"name": "template-node",
+	"name": "extra-zenn-cli",
 	"version": "0.0.0",
-	"description": "(Node.js && TypeScript && ESM) Template",
 	"private": true,
 	"license": "MIT",
-	"keywords": [],
 	"scripts": {
 		"build": "tsc",
 		"watch": "tsc -w",
@@ -14,7 +12,7 @@
 	},
 	"main": "./dist/index.js",
 	"bin": {
-		"COMMAND_NAME": "./dist/index.js"
+		"ezc": "./dist/index.js"
 	},
 	"devDependencies": {
 		"@types/node": "^18.7.18",
@@ -29,9 +27,9 @@
 	"dependencies": {},
 	"type": "module",
 	"engines": {
-		"node": "^16.17.0"
+		"node": "^18.17.1"
 	},
 	"volta": {
-		"node": "16.17.0"
+		"node": "18.17.1"
 	}
 }
