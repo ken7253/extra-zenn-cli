@@ -1,8 +1,8 @@
-type SuccessResult = {
+export type SuccessResult = {
 	type: 'success';
 	message: string;
 };
-type ErrorResult = {
+export type ErrorResult = {
 	type: 'error';
 	error: Error;
 };
