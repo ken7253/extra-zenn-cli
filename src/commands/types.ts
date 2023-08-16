@@ -9,4 +9,4 @@ type ErrorResult = {
 
 type TaskResult = SuccessResult | ErrorResult;
 
-export type Task<T = never> = (args: T) => TaskResult;
+export type Task<T = never> = (args?: T) => TaskResult;
