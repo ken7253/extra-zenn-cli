@@ -1,2 +1,8 @@
 #!/usr/bin/env node
-console.log('test');
+import { cac } from 'cac';
+
+const cli = cac();
+
+cli.help();
+cli.version('0.0.0');
+cli.parse();
