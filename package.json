@@ -4,8 +4,8 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"build": "tsc",
-		"watch": "tsc -w",
+		"build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --minify",
+		"watch": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --watch",
 		"lint": "eslint src",
 		"fmt": "prettier -w .",
 		"prepublishOnly": "npm run build",
@@ -20,6 +20,7 @@
 		"@types/node": "^20.5.0",
 		"@typescript-eslint/eslint-plugin": "^6.4.0",
 		"@typescript-eslint/parser": "^6.4.0",
+		"esbuild": "^0.19.2",
 		"eslint": "^8.47.0",
 		"eslint-config-prettier": "^9.0.0",
 		"npm-check-updates": "^16.11.1",
