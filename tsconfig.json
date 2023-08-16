@@ -4,7 +4,7 @@
 	"files": ["./env.d.ts", "vitest.config.ts"],
 	"compilerOptions": {
 		"module": "ESNext",
-		"moduleResolution": "Node16",
+		"moduleResolution": "Bundler",
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
