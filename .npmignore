@@ -1,0 +1,16 @@
+# directory
+.github/
+.vscode/
+.tmp/
+src/
+test/
+node_modules/
+
+# files
+.eslintignore
+.eslintrc.json
+.prettierignore
+.prettierrc.json
+.gitignore
+.gitattributes
+env.d.ts

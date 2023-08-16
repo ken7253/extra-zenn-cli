@@ -1,0 +1,37 @@
+{
+	"name": "template-node",
+	"version": "0.0.0",
+	"description": "(Node.js && TypeScript && ESM) Template",
+	"private": true,
+	"license": "MIT",
+	"keywords": [],
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w",
+		"lint": "eslint src",
+		"fmt": "prettier -w .",
+		"prepublishOnly": "npm run build"
+	},
+	"main": "./dist/index.js",
+	"bin": {
+		"COMMAND_NAME": "./dist/index.js"
+	},
+	"devDependencies": {
+		"@types/node": "^18.7.18",
+		"@typescript-eslint/eslint-plugin": "^5.38.0",
+		"@typescript-eslint/parser": "^5.38.0",
+		"eslint": "^8.23.1",
+		"eslint-config-prettier": "^8.5.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^2.7.1",
+		"typescript": "^4.8.3"
+	},
+	"dependencies": {},
+	"type": "module",
+	"engines": {
+		"node": "^16.17.0"
+	},
+	"volta": {
+		"node": "16.17.0"
+	}
+}
