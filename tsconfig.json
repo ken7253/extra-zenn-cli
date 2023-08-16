@@ -1,7 +1,7 @@
 {
 	/* Visit https://aka.ms/tsconfig to read more about this file */
 	"include": ["src/**/*.ts"],
-	"files": ["./env.d.ts"],
+	"files": ["./env.d.ts", "vitest.config.ts"],
 	"compilerOptions": {
 		"outDir": "dist",
 		"target": "ESNext",

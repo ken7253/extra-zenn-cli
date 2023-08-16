@@ -8,6 +8,7 @@
 		"watch": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --watch",
 		"lint": "eslint src",
 		"fmt": "prettier -w .",
+		"test": "vitest",
 		"prepublishOnly": "npm run build",
 		"update": "ncu -i",
 		"prebuild": "rimraf dist"
