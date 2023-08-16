@@ -4,8 +4,8 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --minify",
-		"watch": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --watch",
+		"build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --packages=external --minify",
+		"watch": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --packages=external --watch",
 		"lint": "eslint src",
 		"fmt": "prettier -w .",
 		"test": "vitest",
