@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 import { cac } from 'cac';
 import { list } from './commands';
+import { logger } from './util/logger';
 
 const cli = cac();
 
 cli
 	.command('list', 'list')
 	.action(() => {
-		const result = list();
-		if (result.type === 'success') {
-			console.log(result.message);
-		}
+		logger(list());
 	})
 	.alias('ls');
 
