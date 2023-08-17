@@ -9,4 +9,5 @@ export type ErrorResult = {
 
 type TaskResult = SuccessResult | ErrorResult;
 
-export type Task<T = never> = (args?: T) => TaskResult;
+export type Task<T extends Record<string, unknown> | undefined = undefined> =
+	T extends undefined ? () => TaskResult : (args: T) => TaskResult;
