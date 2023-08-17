@@ -1,9 +1,12 @@
-import type { Task } from '../../types';
-import { type ArgData } from './schema';
+import { safeParse } from 'valibot';
 
-export const list: Task<ArgData> = (args) => {
-	return {
-		type: 'success',
-		message: `${JSON.stringify(args)}`,
-	};
+import { argNormalizer } from '../../util/argNormalizer';
+import { ArgSchema } from './schema';
+
+export const list = (args: unknown): void => {
+	const validArgs = safeParse(ArgSchema, argNormalizer(args));
+
+	if (validArgs.success) {
+		console.log(validArgs.data);
+	}
 };
