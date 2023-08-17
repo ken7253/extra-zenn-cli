@@ -3,6 +3,7 @@
 	"include": ["src/**/*.ts"],
 	"files": ["./env.d.ts", "vitest.config.ts"],
 	"compilerOptions": {
+		"lib": ["ESNext"],
 		"module": "ESNext",
 		"moduleResolution": "Bundler",
 		"resolveJsonModule": true,
