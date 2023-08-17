@@ -3,7 +3,7 @@ import { cac } from 'cac';
 import { list } from './commands';
 import { logger } from './util/logger';
 
-const cli = cac();
+const cli = cac('ezc');
 
 cli
 	.command('list', 'list')
