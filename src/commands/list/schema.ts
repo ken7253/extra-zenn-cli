@@ -1,6 +1,6 @@
 import { Output, boolean, object } from 'valibot';
 
-const ArgSchema = object({
+export const ArgSchema = object({
 	books: boolean(),
 });
 
