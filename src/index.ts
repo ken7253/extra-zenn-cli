@@ -9,7 +9,7 @@ cli
 	.option('-b, --books', 'display Books list', {
 		default: false,
 	})
-	.action((v: unknown) => list(v))
+	.action(async (v: unknown) => console.log(await list(v)))
 	.alias('ls');
 
 cli.help();

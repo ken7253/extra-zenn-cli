@@ -4,13 +4,14 @@ import { safeParse } from 'valibot';
 import { glob } from 'glob';
 
 import { argNormalizer } from '../../util/argNormalizer';
+import type { Command } from '../types';
 import { ArgSchema } from './schema';
 
 /**
  * list command
  * @param args `cac`によって処理される引数のオブジェクト
  */
-export const list = (args: unknown): void => {
+export const list: Command = async (args) => {
 	const validResult = safeParse(ArgSchema, argNormalizer(args));
 
 	if (!validResult.success) {
@@ -20,12 +21,11 @@ export const list = (args: unknown): void => {
 
 	const option = validResult.data;
 	const baseDir = path.join(process.cwd(), option.books ? 'books' : 'articles');
-	void glob(path.join(baseDir, '*.md')).then((filePathList) => {
-		const fileList = filePathList.reduce<string[]>((acc, current) => {
-			const { name, ext } = path.parse(current);
-			return ext !== '.md' ? [...acc] : [...acc, `${name}${ext}`];
-		}, []);
+	const filePathList = await glob(path.join(baseDir, '*.md'));
+	const fileList = filePathList.reduce<string[]>((acc, current) => {
+		const { name, ext } = path.parse(current);
+		return ext !== '.md' ? [...acc] : [...acc, `${name}${ext}`];
+	}, []);
 
-		console.log(fileList.join(' '));
-	});
+	return fileList.join(' ');
 };
