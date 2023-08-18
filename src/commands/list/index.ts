@@ -24,7 +24,7 @@ export const list: Command = async (args) => {
 	const filePathList = await glob(path.join(baseDir, '*.md'));
 	const fileList = filePathList.reduce<string[]>((acc, current) => {
 		const { name, ext } = path.parse(current);
-		return ext !== '.md' ? [...acc] : [...acc, `${name}${ext}`];
+		return [...acc, `${name}${ext}`];
 	}, []);
 
 	return fileList.join(' ');
