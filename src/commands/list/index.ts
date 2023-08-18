@@ -21,7 +21,9 @@ export const list: Command = async (args) => {
 
 	const option = validResult.data;
 	const baseDir = path.join(process.cwd(), option.books ? 'books' : 'articles');
-	const filePathList = await glob(path.join(baseDir, '*.md'));
+	const filePathList = await glob(
+		path.join(baseDir, option.all ? '*' : '*.md'),
+	);
 	const fileList = filePathList.reduce<string[]>((acc, current) => {
 		const { name, ext } = path.parse(current);
 		return [...acc, `${name}${ext}`];

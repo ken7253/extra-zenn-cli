@@ -9,6 +9,9 @@ cli
 	.option('-b, --books', 'display Books list', {
 		default: false,
 	})
+	.option('-a, --all', 'display all files', {
+		default: false,
+	})
 	.action(async (v: unknown) => console.log(await list(v)))
 	.alias('ls');
 
