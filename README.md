@@ -1,8 +1,23 @@
-# template-node
+# extra-zenn-cli
 
-(Node.js && TypeScript && ESM) Template
+[zenn-cli](https://zenn-dev.github.io/zenn-docs-for-developers/guides/zenn-editor/zenn-cli)に実装されていない機能を利用するためのパッケージです。
 
-## policy
+## 使い方
 
-1. Always use the latest version of node.js
-2. No updates to loosen type checking.
+インストール
+
+```sh
+npm i -D extra-zenn-cli
+```
+
+コマンドの実行
+
+```sh
+npx extra-zenn-cli --version
+# or
+npx ezc --version
+```
+
+## License
+
+[MIT](./LICENSE)
