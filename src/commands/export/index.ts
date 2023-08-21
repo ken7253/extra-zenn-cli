@@ -5,8 +5,11 @@ import type { Command } from '../types';
 import { ArgSchema } from './schema';
 
 /**
- * 記事のデータなどを静的なファイルに変換して出力する関数
- * @returns
+ * 記事データなどを静的ファイルとして出力する関数
+ *
+ * @param args `cac`から渡される引数
+ *
+ * @returns 標準出力に表示する処理結果
  */
 export const exportFile: Command = async (args: unknown) => {
 	const validArgResult = safeParse(ArgSchema, argNormalizer(args));
