@@ -8,6 +8,7 @@ import markdownToHtml from 'zenn-markdown-html';
 import { argNormalizer } from '../../util/argNormalizer';
 import type { Command } from '../types';
 import { ArgSchema } from './schema';
+import { insertContent } from './insertContent';
 
 /**
  * 記事データなどを静的ファイルとして出力する関数
@@ -45,7 +46,10 @@ export const exportFile: Command = async (args: unknown) => {
 	const outputDirectory = path.join(process.cwd(), options.output);
 	await mkdir(outputDirectory);
 	const writeTask = result.map((file, index) => {
-		return writeFile(path.join(outputDirectory, `file-${index}.html`), file);
+		return writeFile(
+			path.join(outputDirectory, `file-${index}.html`),
+			insertContent(file),
+		);
 	});
 	void Promise.allSettled(writeTask);
 
