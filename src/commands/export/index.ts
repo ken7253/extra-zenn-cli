@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile, cp } from 'node:fs/promises';
 
 import { safeParse } from 'valibot';
 import { glob } from 'glob';
@@ -51,7 +51,18 @@ export const exportFile: Command = async (args: unknown) => {
 			insertContent(file),
 		);
 	});
-	void Promise.allSettled(writeTask);
+
+	void Promise.allSettled(writeTask).then(() => {
+		const modulePath = path.join(
+			process.cwd(),
+			'node_modules',
+			'zenn-content-css',
+			'lib',
+			'index.css',
+		);
+		const exportStylePath = path.join(outputDirectory, 'index.css');
+		void cp(modulePath, exportStylePath);
+	});
 
 	// export command
 	return JSON.stringify(result);
