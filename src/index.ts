@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { cac } from 'cac';
-import { list } from './commands';
+import { list, exportFile } from './commands';
 
 const cli = cac('ezc');
 
@@ -14,6 +14,10 @@ cli
 	})
 	.action(async (v: unknown) => console.log(await list(v)))
 	.alias('ls');
+
+cli
+	.command('export', 'export static file')
+	.action(async (v: unknown) => console.log(await exportFile(v)));
 
 cli.help();
 cli.version('0.0.0');
