@@ -46,8 +46,9 @@ export const exportFile: Command = async (args: unknown) => {
 	const outputDirectory = path.join(process.cwd(), options.output);
 	await mkdir(outputDirectory);
 	const writeTask = result.map((file, index) => {
+		const { name } = path.parse(`${inputFileList[index]}`);
 		return writeFile(
-			path.join(outputDirectory, `file-${index}.html`),
+			path.join(outputDirectory, `${name}.html`),
 			insertContent(file),
 		);
 	});
@@ -65,5 +66,5 @@ export const exportFile: Command = async (args: unknown) => {
 	});
 
 	// export command
-	return JSON.stringify(result);
+	return new Promise(() => '');
 };
