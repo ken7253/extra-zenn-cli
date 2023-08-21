@@ -22,6 +22,7 @@ export const list: Command = async (args) => {
 		throw validResult.error;
 	}
 
+	/** バリデーション済みの引数オブジェクト */
 	const option = validResult.data;
 	const baseDir = path.join(process.cwd(), option.books ? 'books' : 'articles');
 	const filePathList = await glob(
