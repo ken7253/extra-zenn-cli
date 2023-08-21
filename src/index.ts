@@ -17,7 +17,12 @@ cli
 
 cli
 	.command('export', 'export static file')
-	.action(async (v: unknown) => console.log(await exportFile(v)));
+	.option('--output <dir>', 'export directory', {
+		default: 'public',
+	})
+	.action(async (v: unknown) => {
+		console.log(await exportFile(v));
+	});
 
 cli.help();
 cli.version('0.0.0');
