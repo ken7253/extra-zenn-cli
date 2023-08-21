@@ -4,6 +4,9 @@ import { describe, test, expect } from 'vitest';
 import { list } from './index';
 import type { ArgData } from './schema';
 
+/**
+ * 引数のモック
+ */
 const defaultArgs: ArgData = {
 	books: false,
 	all: false,

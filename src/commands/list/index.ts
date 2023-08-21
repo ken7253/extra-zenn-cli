@@ -9,7 +9,10 @@ import { ArgSchema } from './schema';
 
 /**
  * list command
+ *
  * @param args `cac`によって処理される引数のオブジェクト
+ *
+ * @returns 標準出力に渡す文字列
  */
 export const list: Command = async (args) => {
 	const validResult = safeParse(ArgSchema, argNormalizer(args));
