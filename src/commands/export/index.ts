@@ -1,4 +1,9 @@
+import path from 'node:path';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
+
 import { safeParse } from 'valibot';
+import { glob } from 'glob';
+import markdownToHtml from 'zenn-markdown-html';
 
 import { argNormalizer } from '../../util/argNormalizer';
 import type { Command } from '../types';
@@ -20,6 +25,30 @@ export const exportFile: Command = async (args: unknown) => {
 	}
 
 	const options = validArgResult.data;
+	const inputFileList = await glob(
+		path.join(process.cwd(), 'articles', '**.md'),
+	);
+
+	const parser = markdownToHtml;
+	const catTask = inputFileList.map((filePath) =>
+		readFile(filePath, { encoding: 'utf-8' }),
+	);
+	const result = (await Promise.allSettled(catTask)).map((file) => {
+		if (file.status === 'fulfilled') {
+			const html = parser(file.value);
+			return html;
+		} else {
+			return `<p>file parse error</p>`;
+		}
+	});
+
+	const outputDirectory = path.join(process.cwd(), options.output);
+	await mkdir(outputDirectory);
+	const writeTask = result.map((file, index) => {
+		return writeFile(path.join(outputDirectory, `file-${index}.html`), file);
+	});
+	void Promise.allSettled(writeTask);
+
 	// export command
-	return new Promise(() => JSON.stringify(options));
+	return JSON.stringify(result);
 };
