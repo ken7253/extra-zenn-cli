@@ -6,6 +6,7 @@ import fm from 'front-matter';
 import { validateArticle } from 'zenn-model';
 
 import type { Command } from '../types';
+import { formatter } from './formatter';
 
 export const lint: Command = async () => {
 	const baseDir = path.join(process.cwd(), 'articles');
@@ -20,27 +21,7 @@ export const lint: Command = async () => {
 
 	const result = await Promise.all(validate);
 
-	const format = result.flatMap(([path, detail]) => {
-		if (detail === null) return [''];
-
-		const error = detail.filter(({ isCritical }) => isCritical);
-		const warn = detail.filter(({ isCritical }) => !isCritical);
-
-		const errorList = error
-			.map(({ type, message }) => [type, message].join('\n'))
-			.join('\n');
-		const warnList = error
-			.map(({ type, message }) => [type, message].join('\n'))
-			.join('\n');
-
-		return [
-			`${path}`,
-			`Error: ${error.length}`,
-			`${errorList}`,
-			`Warn: ${warn.length}`,
-			`${warnList}`,
-		].join('\n');
-	});
+	const format = result.flatMap((v) => formatter(v));
 
 	// Lint
 	return format.join('\n');
