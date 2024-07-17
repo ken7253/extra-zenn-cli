@@ -1,4 +1,6 @@
 import type { ValidationError } from 'zenn-model';
+import { red, yellow, gray } from 'chalk';
+
 import type { ValidateResult } from './types';
 
 const withIndent = (line: string) => `  ${line}`;
@@ -12,9 +14,11 @@ export const formatter = ([path, detail]: ValidateResult) => {
 	const line = (problem: ValidationError[]) =>
 		problem
 			.map(({ isCritical, message, type }) => {
-				const category = isCritical ? 'error' : 'warn ';
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+				const category = isCritical ? red('error') : yellow('warn ');
 
-				return withIndent(`${category}  ${message}  ${type}`);
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+				return withIndent(`${category}  ${message}  ${gray.bgBlack(type)}`);
 			})
 			.join('\n');
 
